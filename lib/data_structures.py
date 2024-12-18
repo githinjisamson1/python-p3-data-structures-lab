@@ -18,58 +18,45 @@ spicy_foods = [
 
 
 def get_names(spicy_foods):
-    namesOfSpicyFoodsLc = [item.get("name", "Not found!")
-                           for item in spicy_foods]
-
-    return namesOfSpicyFoodsLc
+    return [item["name"] for item in spicy_foods]
 
 
 def get_spiciest_foods(spicy_foods):
-    heatLevelGreaterThan5 = [
-        item for item in spicy_foods if item.get("heat_level") > 5]
-
-    return heatLevelGreaterThan5
+    return [item for item in spicy_foods if item["heat_level"] > 5]
 
 
 def print_spicy_foods(spicy_foods):
     for item in spicy_foods:
+        # !use single quotes
+        # Buffalo Wings (American) | Heat Level: 🌶🌶🌶
         print(
-            f"{item.get('name')} ({item.get('cuisine')}) | Heat Level: {'🌶' * item.get('heat_level') }")
+            f"{item['name']} ({item['cuisine']}) | Heat Level: {'🌶' * item['heat_level']}")
 
-
-# print_spicy_foods(spicy_foods)
 
 def get_spicy_food_by_cuisine(spicy_foods, cuisine):
-
     for item in spicy_foods:
-        if item.get("cuisine") == cuisine:
-            matchingCuisineDict = item
-
-    return matchingCuisineDict
-
-
-print(get_spicy_food_by_cuisine(spicy_foods, "American"))
+        if item["cuisine"] == cuisine:
+            return item
 
 
 def print_spiciest_foods(spicy_foods):
     for item in spicy_foods:
-        if item.get("heat_level") > 5:
+        if item["heat_level"] > 5:
+            # !use single quotes
+            # Buffalo Wings (American) | Heat Level: 🌶🌶🌶
             print(
-                f"{item.get('name')} ({item.get('cuisine')}) | Heat Level: {'🌶' * item.get('heat_level') }")
+                f"{item['name']} ({item['cuisine']}) | Heat Level: {'🌶' * item['heat_level']}")
 
 
 def get_average_heat_level(spicy_foods):
-    sumOfAllHeatLevels = 0
-
-    for item in spicy_foods:
-        sumOfAllHeatLevels += item.get("heat_level")
-
-    return int(sumOfAllHeatLevels/len(spicy_foods))
-
-
-# print(get_average_heat_level(spicy_foods))
+    heat_levels = [item["heat_level"] for item in spicy_foods]
+    return sum(heat_levels)/len(heat_levels)
 
 
 def create_spicy_food(spicy_foods, spicy_food):
     spicy_foods.append(spicy_food)
     return spicy_foods
+
+
+print_spicy_foods(spicy_foods)
+print(get_average_heat_level(spicy_foods))
